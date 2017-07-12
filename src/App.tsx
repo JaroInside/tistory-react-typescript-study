@@ -1,30 +1,42 @@
 import * as React from 'react';
 import './App.css';
 
+import Parent from './Parent';
+import StatelessComponent from './Stateless';
+
 const logo = require('./logo.svg');
 
 interface AppProps {
-  name: string;
 }
 
 interface AppState {
-  age: number;
+  name: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
 
   constructor(props: {name: string}) {
+    console.log('App constructor');
     super(props);
     this.state = {
-      age: 31
+      name: 'jaro'
     };
-    this._addAge = this._addAge.bind(this);
+    this._changeName = this._changeName.bind(this);
+  }
+
+  componentWillMount() {
+    console.log('App componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('App componentDidMount');
   }
 
   render() {
 
-    const {name} = this.props;
-    const {age} = this.state;
+    console.log('App render');
+
+    const { name } = this.state;
 
     return (
       <div className="App">
@@ -32,16 +44,17 @@ class App extends React.Component<AppProps, AppState> {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <h1>Hello {name}</h1>
-        <h1>age : {age}</h1>          
-        <button onClick={this._addAge}>나이 추가</button>
+        <button onClick={this._changeName}>이름 변경</button>
+        <Parent name={name}/>
+        <StatelessComponent name="React-TS">Children</StatelessComponent>
       </div>
     );
   }
 
-  private _addAge(): void {
+  private _changeName(): void {
+    const name = (this.state.name === 'jaro') ? 'react' : 'jaro';
     this.setState({
-      age: this.state.age + 1
+      name: name
     });
   }
 
