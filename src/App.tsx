@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './App.css';
 
+import StatelessComponent from './Stateless';
+
 const logo = require('./logo.svg');
 
 interface AppProps {
@@ -14,6 +16,7 @@ interface AppState {
 class App extends React.Component<AppProps, AppState> {
 
   constructor(props: {name: string}) {
+    console.log('App constructor');
     super(props);
     this.state = {
       age: 31
@@ -22,6 +25,8 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
+
+    console.log('App render');
 
     const {name} = this.props;
     const {age} = this.state;
@@ -35,6 +40,7 @@ class App extends React.Component<AppProps, AppState> {
         <h1>Hello {name}</h1>
         <h1>age : {age}</h1>          
         <button onClick={this._addAge}>나이 추가</button>
+        <StatelessComponent name="React-TS">Children</StatelessComponent>
       </div>
     );
   }
