@@ -11,7 +11,7 @@ interface ParentState {
 class Parent extends React.Component<ParentProps, ParentState> {
 
   public static defaultProps = {
-    name: 'Jaro\'s Parent'
+    name: 'Jaro\'s'
   };
 
   constructor(props: {name: string}) {

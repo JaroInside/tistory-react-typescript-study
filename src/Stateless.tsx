@@ -4,15 +4,10 @@ interface StateLessProps {
   name?: string;
 }
 
-const defaultProps: StateLessProps = {
-    name: 'JaroInside'
-};
-
-const StatelessComponent: React.SFC<StateLessProps> = (props) => {
+const StatelessComponent: React.SFC<StateLessProps> = ({name= 'JaroInside' , children}) => {
   return (
-    <h2>{props.name} - {props.children}</h2>
+    <h2>{name} - {children}</h2>
   );
 };
-StatelessComponent.defaultProps = defaultProps;
 
 export default StatelessComponent;

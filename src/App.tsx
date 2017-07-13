@@ -67,7 +67,7 @@ class App extends React.Component<AppProps, AppState> {
         </div>
         <button onClick={this._changeName}>이름 변경</button>
         <Parent name={name}/>
-        <StatelessComponent name="React-TS">Children</StatelessComponent>
+        <StatelessComponent >Children</StatelessComponent>
         { secret ?
           <Secret /> :
           <h1 />
