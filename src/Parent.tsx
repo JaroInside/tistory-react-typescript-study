@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface ParentProps {
-  name: string;
+  name?: string;
 }
 
 interface ParentState {
@@ -9,6 +9,10 @@ interface ParentState {
 }
 
 class Parent extends React.Component<ParentProps, ParentState> {
+
+  public static defaultProps = {
+    name: 'Jaro\'s Parent'
+  };
 
   constructor(props: {name: string}) {
     console.log('Parent constructor');
@@ -33,7 +37,7 @@ class Parent extends React.Component<ParentProps, ParentState> {
 
   shouldComponentUpdate(nextProps: ParentProps, nextState: ParentState): boolean {
     console.log(`Parent shouldComponentUpdate : ${JSON.stringify(nextProps)}, ${JSON.stringify(nextState)}`);
-    return false;
+    return (this.props.name === nextProps.name) ? false : true;
   }
 
   componentWillUpdate(nextProps: ParentProps, nextState: ParentState) {
