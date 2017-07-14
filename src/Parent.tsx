@@ -37,6 +37,7 @@ class Parent extends React.Component<ParentProps, ParentState> {
 
   shouldComponentUpdate(nextProps: ParentProps, nextState: ParentState): boolean {
     console.log(`Parent shouldComponentUpdate : ${JSON.stringify(nextProps)}, ${JSON.stringify(nextState)}`);
+    // fix
     return(this.state.age !== nextState.age || this.props.name !== nextProps.name) ? true : false;
   }
 
