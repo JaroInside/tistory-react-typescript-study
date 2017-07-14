@@ -1,31 +1,25 @@
 import * as React from 'react';
-import './App.css';
-
-import Parent from './Parent';
-import Secret from './Secret';
-import StatelessComponent from './Stateless';
-
-const logo = require('./logo.svg');
+import { Parent } from '../components';
 
 interface AppProps {
 }
 
 interface AppState {
-  name: string;
-  secret: boolean;
+  toChild: string;
+  fromChild: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
 
-  constructor(props: {name: string}) {
+  constructor(props: AppProps) {
     console.log('App constructor');
     super(props);
     this.state = {
-      name: 'jaro',
-      secret: true
+      toChild: '이건 App에서 Child로 보내주는 값',
+      fromChild: '이건 App의 state에 있는 값'
     };
-    this._changeName = this._changeName.bind(this);
-    this._changeSecret = this._changeSecret.bind(this);
+    this._changeToChild = this._changeToChild.bind(this);
+    this._changeFromChild = this._changeFromChild.bind(this);
   }
 
   componentWillMount() {
@@ -57,37 +51,25 @@ class App extends React.Component<AppProps, AppState> {
 
     console.log('App render');
 
-    const { name, secret } = this.state;
-
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <button onClick={this._changeName}>이름 변경</button>
-        <Parent name={name}/>
-        <StatelessComponent >Children</StatelessComponent>
-        { secret ?
-          <Secret /> :
-          <h1 />
-        }
-        <button onClick={this._changeSecret}>비밀</button>
+        <h1>App</h1>
+        <h2>{this.state.fromChild}</h2>
+        <Parent {...this.state} changeFromChild={this._changeFromChild}/>
+        <button onClick={this._changeToChild}>App에서 Child값 변경</button>
       </div>
     );
   }
 
-  private _changeName(): void {
-    const name = (this.state.name === 'jaro') ? 'react' : 'jaro';
+  private _changeToChild(): void {
     this.setState({
-      name: name
+      toChild: 'App에서 Child로 보내주는 값 변경 변경 변경 변경!!!!!!'
     });
   }
 
-  private _changeSecret(): void {
-    const secret = (this.state.secret) ? false : true;
+  private _changeFromChild(): void {
     this.setState({
-      secret: secret
+      fromChild: 'Child에서 App에 있는 state값 변경 변경 변경 변경!!!!!!'
     });
   }
 

@@ -1,26 +1,19 @@
 import * as React from 'react';
+import { Me } from '.';
 
 interface ParentProps {
-  name?: string;
+  toChild: string;
+  changeFromChild(): void;
 }
 
 interface ParentState {
-  age: number;
 }
 
 class Parent extends React.Component<ParentProps, ParentState> {
 
-  public static defaultProps = {
-    name: 'Jaro\'s'
-  };
-
-  constructor(props: {name: string}) {
+  constructor(props: ParentProps) {
     console.log('Parent constructor');
     super(props);
-    this.state = {
-      age: 31
-    };
-    this._addAge = this._addAge.bind(this);
   }
 
   componentWillMount() {
@@ -37,7 +30,7 @@ class Parent extends React.Component<ParentProps, ParentState> {
 
   shouldComponentUpdate(nextProps: ParentProps, nextState: ParentState): boolean {
     console.log(`Parent shouldComponentUpdate : ${JSON.stringify(nextProps)}, ${JSON.stringify(nextState)}`);
-    return (this.props.name === nextProps.name) ? false : true;
+    return true;
   }
 
   componentWillUpdate(nextProps: ParentProps, nextState: ParentState) {
@@ -49,25 +42,15 @@ class Parent extends React.Component<ParentProps, ParentState> {
   }
 
   render() {
+
     console.log('Parent render');
-    
-    const {name} = this.props;
-    const {age} = this.state;
-    
+
     return (
-      
       <div className="Parent">
-        <h1>Hello {name}</h1>
-        <h1>age : {age}</h1>          
-        <button onClick={this._addAge}>나이 추가</button>
+        <h1>Parent</h1>
+        <Me {...this.props} />
       </div>
     );
-  }
-
-  private _addAge(): void {
-    this.setState({
-      age: this.state.age + 1
-    });
   }
 
 }
