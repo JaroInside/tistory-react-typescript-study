@@ -9,7 +9,7 @@ interface AppState {
   array: number[];
 }
 
-class App extends React.Component<AppProps, AppState> {
+class App extends React.PureComponent<AppProps, AppState> {
 
   constructor(props: AppProps) {
     console.log('App constructor');
