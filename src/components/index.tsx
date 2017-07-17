@@ -1,5 +1,6 @@
-import Parent from './Parent';
-import Me from './Me';
-import Child from './Child';
+import HelloForm from './HelloForm';
+import HelloContent from './HelloContent';
 
-export { Parent, Me, Child };
+import Text from './Text';
+
+export { HelloForm, HelloContent, Text };
