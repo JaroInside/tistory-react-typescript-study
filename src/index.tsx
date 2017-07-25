@@ -6,7 +6,7 @@ import './index.css';
 
 import { Store, createStore } from 'redux';
 import { ageApp } from './reducer/ageApp';
-import Provider from './components/Provider';
+import { Provider } from 'react-redux';
 
 const store: Store<{ age: number; }> = createStore<{ age: number; }>(ageApp);
 
