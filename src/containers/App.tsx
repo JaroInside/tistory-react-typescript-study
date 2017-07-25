@@ -1,27 +1,28 @@
 import * as React from 'react';
 import './App.css';
 
-import { Store, Unsubscribe } from 'redux';
+import { Unsubscribe } from 'redux';
+import * as PropTypes from 'prop-types';
 
 import { addAge } from '../action/addAge';
 
 const logo = require('./logo.svg');
 
-interface AppProps {
-  store: Store<{ age: number; }>;
-}
+class App extends React.Component<{}, {}> {
 
-class App extends React.Component<AppProps, {}> {
-  
+  public static contextTypes = {
+    store: PropTypes.object
+  };
+
   private _unsubscribe: Unsubscribe;
   
-  constructor(props: AppProps) {
+  constructor(props: {}) {
     super(props);
     this._addAge = this._addAge.bind(this);
   }
 
   componentDidMount() {
-    const store = this.props.store;
+    const store = this.context.store;
     this._unsubscribe = store.subscribe(() => {
       this.forceUpdate();
     });
@@ -33,7 +34,7 @@ class App extends React.Component<AppProps, {}> {
   }
 
   render() {
-    const state = this.props.store.getState();
+    const state = this.context.store.getState();
     return (
       <div className="App">
         <div className="App-header">
@@ -46,8 +47,10 @@ class App extends React.Component<AppProps, {}> {
     );
   }
 
-  private _addAge() {
-    this.props.store.dispatch(addAge());
+  private _addAge(): void {
+    const store = this.context.store;
+    const action = addAge();
+    store.dispatch(action);
   }
   
 }
