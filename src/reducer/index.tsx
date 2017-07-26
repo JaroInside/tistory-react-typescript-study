@@ -27,13 +27,16 @@ export function combine(state: CombinedState = initialCombinedState, action: Act
 import { combineReducers } from 'redux';
 import { age } from './age';
 import { image } from './image';
+import { async } from './async';
 
 type CombinedState = {
   age: number;
   image: boolean;
+  async: { status: string; name: string; };
 };
 
 export const combine = combineReducers<CombinedState>({
   age: age,
-  image: image
+  image: image,
+  async: async
 });

@@ -3,7 +3,7 @@ import './App.css';
 
 import { connect } from 'react-redux';
 
-import { Image } from '../components';
+import { Image, Async } from '../components';
 
 import { addAge } from '../action/addAge';
 
@@ -18,6 +18,7 @@ const App: React.SFC<AppProps> = (props) => {
       <Image />
       <h1>{props.age}</h1>
       <button onClick={props.onAddClick}>증가합니다.</button>
+      <Async />
     </div>
   );
 };

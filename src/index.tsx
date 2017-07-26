@@ -8,7 +8,16 @@ import { createStore } from 'redux';
 import { combine } from './reducer';
 import { Provider } from 'react-redux';
 
-const store = createStore<{ age: number; image: boolean; }>(combine);
+type StoreTypes = {
+  age: number; 
+  image: boolean; 
+  async: { 
+    status: string; 
+    name: string; 
+  };
+};
+
+const store = createStore<StoreTypes>(combine);
 
 ReactDOM.render(
   <Provider store={store} >
