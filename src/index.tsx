@@ -5,10 +5,10 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 import { Store, createStore } from 'redux';
-import { ageApp } from './reducer/ageApp';
+import { combine } from './reducer/combine';
 import { Provider } from 'react-redux';
 
-const store: Store<{ age: number; }> = createStore<{ age: number; }>(ageApp);
+const store: Store<{ age: number; imageShow: boolean; }> = createStore<{ age: number; imageShow: boolean; }>(combine);
 
 ReactDOM.render(
   <Provider store={store} >

@@ -1,9 +1,21 @@
 import * as types from '../action/actionType';
 
-export function ageApp(state: { age: number; } = { age: 30 }, action: { type: string; }): { age: number } {
+type State = {
+  readonly age: number
+};
+
+const initialState: State = {
+  age: 30
+};
+
+type Action = { type: typeof types.ADD_AGE };
+
+export function ageApp(state: State = initialState, action: Action): State {
   switch (action.type) {
     case types.ADD_AGE:
-        return { age: state.age + 1 };
+        return {
+          ...state, age: state.age + 1,
+        };
     default:
         return state;
   }
