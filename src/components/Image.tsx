@@ -5,14 +5,14 @@ import { imageShowHide } from '../action/image';
 const image = require('./test.jpeg');
 
 interface ImageProps {
-  imageShow: boolean;
+  image: boolean;
   onShowClick(): void;
 }
 
 const Image: React.SFC<ImageProps> = (props) => {
   return (
     <div className="Image">
-      { props.imageShow ? 
+      { props.image ? 
       <img src={image} className="Test-image" alt="jaro" /> :
       null }
       <br/>
@@ -21,9 +21,9 @@ const Image: React.SFC<ImageProps> = (props) => {
   );
 };
 
-const mapStateToProps = (state: { imageShow: boolean; }) => {
+const mapStateToProps = (state: { image: boolean; }) => {
   return {
-    imageShow: state.imageShow,
+    image: state.image,
   };
 };
 

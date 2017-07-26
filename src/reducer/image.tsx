@@ -1,21 +1,17 @@
 import * as types from '../action/actionType';
 
-type State = {
-  readonly imageShow: boolean
-};
+type State = boolean;
 
-const initialState: State = {
-  imageShow: true
-};
+const initialState: State = true;
 
-type Action = { type: typeof types.SHOW_HIDE_IMAGE };
+type Action = {
+  type: string;
+};
 
 export function image(state: State = initialState, action: Action): State {
   switch (action.type) {
     case types.SHOW_HIDE_IMAGE:
-        return {
-          ...state, imageShow: !state.imageShow,
-        };
+        return !state;
     default:
         return state;
   }
