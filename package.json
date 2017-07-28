@@ -5,22 +5,13 @@
   "dependencies": {
     "@types/jest": "^20.0.4",
     "@types/node": "^8.0.14",
-    "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
-    "@types/react-redux": "^4.4.47",
-    "@types/react-router-dom": "^4.0.7",
-    "@types/redux": "^3.6.0",
-    "@types/superagent": "^3.5.3",
-    "prop-types": "^15.5.10",
+    "mobx": "^3.2.2",
+    "mobx-react": "^4.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.2",
-    "react-scripts-ts": "2.4.0",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "superagent": "^3.5.2"
+    "react-scripts-ts": "2.4.0"
   },
   "devDependencies": {},
   "scripts": {

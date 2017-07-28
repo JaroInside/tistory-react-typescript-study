@@ -1,5 +1,3 @@
-import ImageContainer from './Image';
-import AgeContainer from './Age';
-import AsyncContainer from './Async';
+import Age from './Age';
 
-export { ImageContainer, AsyncContainer, AgeContainer };
+export { Age };

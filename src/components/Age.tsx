@@ -1,34 +1,30 @@
 import * as React from 'react';
-import * as ReactRedux from 'react-redux';
-import { addAge } from '../action/addAge';
 
-interface AgeProps {
-  age: number;
+import { AgeStore } from '../stores';
+
+import { observer } from 'mobx-react';
+
+const ageState = new AgeStore(30);
+
+@observer
+class Age extends React.Component<{}, {}> {
+  constructor(props: {}) {
+    super(props);
+    this.addAge = this.addAge.bind(this);
+  }
+  render() {
+    return (
+      <div className="Age">
+        <h1>{ageState.getAge()}</h1>
+        <button onClick={() => this.addAge()}>나이증가</button>
+      </div>
+    );
+  }
+  addAge() {
+    const age = ageState.getAge();
+    ageState.setAge(age + 1);
+    console.log(ageState.getAge());
+  }
 }
 
-const Age: React.SFC<AgeProps & ReactRedux.DispatchProp<{}>> = (props) => {
-  function onAddClick(): void {
-    const dispatch: ReactRedux.Dispatch<{}> = props.dispatch;
-    dispatch(addAge());
-  }
-  return (
-    <div className="Age">
-      <h1>{props.age}</h1>
-      <button onClick={() => onAddClick()}>증가합니다.</button>
-    </div>
-  );
-};
-
-const mapStateToProps = (state: { age: number; }) => {
-  return {
-    age: state.age,
-  };
-};
-
-const { connect } = ReactRedux;
-
-const AgeContainer = connect(
-  mapStateToProps
-)(Age);
-
-export default AgeContainer;
+export default Age;
