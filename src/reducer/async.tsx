@@ -18,18 +18,21 @@ type Action = {
 export function async(state: State = initialState, action: Action): State {
   switch (action.type) {
     case types.START_GITHUB_API:
-        return Object.assign({}, state, {
+        return {
+          ...state,
           status: 'START'
-        });
+        };
     case types.END_GITHUB_API:
-        return Object.assign({}, state, {
-          status: 'END',
-          name: action.name
-        });
+        return {
+          ...state,
+            status: 'END',
+            name: action.name
+        };
     case types.ERROR_GITHUB_API:
-        return Object.assign({}, state, {
+        return {
+          ...state,
           status: 'ERROR'
-        });
+        };
     default:
         return state;
   }
