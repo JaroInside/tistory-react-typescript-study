@@ -1,4 +1,5 @@
-import Image from './Image';
-import Async from './Async';
+import ImageContainer from './Image';
+import AgeContainer from './Age';
+import AsyncContainer from './Async';
 
-export { Image, Async };
+export { ImageContainer, AsyncContainer, AgeContainer };

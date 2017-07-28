@@ -1,45 +1,16 @@
 import * as React from 'react';
 import './App.css';
 
-import { connect } from 'react-redux';
+import { ImageContainer, AsyncContainer, AgeContainer } from '../components';
 
-import { Image, Async } from '../components';
-
-import { addAge } from '../action/addAge';
-
-interface AppProps {
-  age: number;
-  onAddClick(): void;
-}
-
-const App: React.SFC<AppProps> = (props) => {
+const App: React.SFC<{}> = (props) => {
   return (
     <div className="App">
-      <Image />
-      <h1>{props.age}</h1>
-      <button onClick={props.onAddClick}>증가합니다.</button>
-      <Async />
+      <ImageContainer />
+      <AgeContainer />
+      <AsyncContainer />
     </div>
   );
 };
 
-const mapStateToProps = (state: { age: number; }) => {
-  return {
-    age: state.age,
-  };
-};
-
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onAddClick: (): void => {
-      dispatch(addAge());
-    }
-  };
-};
-
-const AppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
-
-export default AppContainer;
+export default App;

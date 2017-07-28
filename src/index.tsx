@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { AppContainer } from './containers';
+import { App } from './containers';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import thunk from 'redux-thunk';
@@ -23,7 +23,7 @@ const store = createStore<StoreTypes>(combine, applyMiddleware(middleware, middl
 
 ReactDOM.render(
   <Provider store={store} >
-    <AppContainer />
+    <App />
   </Provider>,
   document.getElementById('root') as HTMLElement
 );
