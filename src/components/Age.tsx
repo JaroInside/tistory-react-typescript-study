@@ -1,17 +1,18 @@
 import * as React from 'react';
 
-import { AgeStore, Age2 } from '../stores';
+import { observer, inject } from 'mobx-react';
 
-import { observer } from 'mobx-react';
+import { AgeStore } from '../stores';
 
-const ageState = new AgeStore(30);
-
+@inject('store')
 @observer
-class Age extends React.Component<{}, {}> {
+class Age extends React.Component<{ store?: AgeStore; }, {}> {
+
+  private store = this.props.store as AgeStore;
+
   constructor(props: {}) {
     super(props);
-    this.addAge = this.addAge.bind(this);
-    this.addNumber = this.addNumber.bind(this);
+    this.store.ageLog();
   }
 
   componentWillReact() {
@@ -28,19 +29,10 @@ class Age extends React.Component<{}, {}> {
     console.log('render');
     return (
       <div className="Age">
-        <h1>{ageState.getAge()}</h1>
-        <button onClick={() => this.addAge()}>나이증가</button>
-        <h1>{Age2.age}</h1>
-        <button onClick={() => this.addNumber()}>나이증가</button>
+        <h1>{this.store.age}</h1>
+        <button onClick={() => this.store.addAge()}>나이증가</button>
       </div>
     );
-  }
-  addAge() {
-    const age = ageState.getAge();
-    ageState.setAge(age + 1);
-  }
-  addNumber() {
-    Age2.age = Age2.age + 1;
   }
 }
 
